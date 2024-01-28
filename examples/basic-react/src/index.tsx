@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import ReactDom from 'react-dom';
 import { ipcLink } from 'electron-trpc/renderer';
 import { createTRPCReact } from '@trpc/react-query';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { AppRouter } from '../electron/api';
+import { createRoot } from 'react-dom/client';
+
 
 const trpcReact = createTRPCReact<AppRouter>();
 
@@ -39,4 +40,5 @@ function HelloElectron() {
   return <div data-testid="greeting">{data.text}</div>;
 }
 
-ReactDom.render(<App />, document.getElementById('react-root'));
+const root = createRoot(document.getElementById('react-root')!);
+root.render(<App />);
